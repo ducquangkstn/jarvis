@@ -138,7 +138,7 @@ func PromptArray(input abi.Argument, prefill string, network string) (interface{
 
 	switch input.Type.Elem.T {
 	case abi.StringTy: // variable arrays are written at the end of the return bytes
-		result := []string{}
+		var result []string
 		if len(arrayContent) == 0 {
 			return result, nil
 		}
@@ -151,7 +151,7 @@ func PromptArray(input abi.Argument, prefill string, network string) (interface{
 		}
 		return result, nil
 	case abi.IntTy, abi.UintTy:
-		result := []*big.Int{}
+		var result []*big.Int
 		if len(arrayContent) == 0 {
 			return result, nil
 		}
@@ -164,7 +164,7 @@ func PromptArray(input abi.Argument, prefill string, network string) (interface{
 		}
 		return result, nil
 	case abi.BoolTy:
-		result := []bool{}
+		var result []bool
 		if len(arrayContent) == 0 {
 			return result, nil
 		}
@@ -177,7 +177,7 @@ func PromptArray(input abi.Argument, prefill string, network string) (interface{
 		}
 		return result, nil
 	case abi.AddressTy:
-		result := []common.Address{}
+		var result []common.Address
 		if len(arrayContent) == 0 {
 			return result, nil
 		}
@@ -190,7 +190,7 @@ func PromptArray(input abi.Argument, prefill string, network string) (interface{
 		}
 		return result, nil
 	case abi.HashTy:
-		result := []common.Hash{}
+		var result []common.Hash
 		if len(arrayContent) == 0 {
 			return result, nil
 		}
