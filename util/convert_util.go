@@ -10,6 +10,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/tranvictor/ethutils"
+
 	"github.com/tranvictor/jarvis/db"
 )
 
@@ -39,7 +40,13 @@ func ConvertToBig(str string, network string) (*big.Int, error) {
 		if strings.ToLower(tokenName) == "eth" {
 			return ethutils.FloatToBigInt(floatNum, 18), nil
 		}
-		token, err := ConvertToAddress(fmt.Sprintf("%s token", tokenName))
+		switch network {
+		case "mainnet":
+			tokenName = fmt.Sprintf("%s token", tokenName)
+		case "ropsten", "tomo":
+			tokenName = fmt.Sprintf("%s %s token", tokenName, network)
+		}
+		token, err := ConvertToAddress(tokenName)
 		if err != nil {
 			return nil, err
 		}

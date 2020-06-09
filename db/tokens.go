@@ -1085,4 +1085,5 @@ var TOKENS map[string]string = map[string]string{
 	"0xe386b139ed3715ca4b18fd52671bdcea1cdfe4b1": "ZST token",
 	"0x83e2be8d114f9661221384b3a50d24b96a5653f5": "ZXC token",
 	"0x23ccc43365d9dd3882eab88f43d515208f832430": "MAS (Midas Protocol) token",
+	"0x7b2810576aa1cce68f2b118cef1f36467c648f92": "KNC ropsten token",
 }

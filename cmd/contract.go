@@ -38,7 +38,7 @@ func promptFunctionCallData(contractAddress string, prefills []string, mode stri
 	if err != nil {
 		return nil, nil, nil, fmt.Errorf("Couldn't get the ABI: %s", err)
 	}
-	methods := []abi.Method{}
+	var methods []abi.Method
 	if mode == "write" {
 		for _, m := range a.Methods {
 			if !m.Const {
@@ -66,10 +66,10 @@ func promptFunctionCallData(contractAddress string, prefills []string, mode stri
 	fmt.Printf("\nMethod: %s\n", method.Name)
 	inputs := method.Inputs
 	if config.PrefillMode && len(inputs) != len(prefills) {
-		return nil, nil, nil, fmt.Errorf("You must specify enough params in prefilled mode")
+		return nil, nil, nil, fmt.Errorf("not enough params in prefilled mode")
 	}
 	fmt.Printf("Input:\n")
-	params := []interface{}{}
+	var params []interface{}
 	pi := 0
 	for {
 		if pi >= len(inputs) {
